@@ -48,29 +48,22 @@ namespace Sudoku.ConsoleApp
 
         }
 
-        private static void Validacao(ref int cont, string[] linha, ref int soma)
+        private static void Validacao(ref int cont, string[] sequencia, ref int soma)
         {
             for (int i = 0; i < 9; i++)
             {
-                if (soma != 45)
-                {
-                    Console.WriteLine("Não");
-
-                    Console.ReadLine();
-
-                    Environment.Exit(0);
-                }
+                EhDiferenteDe45(soma);
 
                 soma = 0;
 
                 cont = 0;
 
-                string[] linhas = linha[i].Split(' ');
+                string[] numeros = sequencia[i].Split(' ');
 
                 for (int c = 0; c < 9; c++)
                 {
-                    soma += Convert.ToInt32(linhas[c]);
-                    if (linhas[i] == linhas[c])
+                    soma += Convert.ToInt32(numeros[c]);
+                    if (numeros[i] == numeros[c])
                     {
                         cont++;
                     }
@@ -78,10 +71,21 @@ namespace Sudoku.ConsoleApp
                     {
                         Console.WriteLine("Não");
                         Console.ReadLine();
-
                         Environment.Exit(0);
                     }
                 }
+            }
+        }
+
+        private static void EhDiferenteDe45(int soma)
+        {
+            if (soma != 45)
+            {
+                Console.WriteLine("Não");
+
+                Console.ReadLine();
+
+                Environment.Exit(0);
             }
         }
 
